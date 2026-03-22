@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Забронировать | ЦЕХ</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .booking-section { padding: 150px 0; max-width: 600px; margin: 0 auto; }
+        .booking-form { background: rgba(255,255,255,0.02); padding: 50px; border: 1px solid var(--border); }
+        .booking-form h1 { font-size: 32px; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 2px; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 10px; text-transform: uppercase; color: var(--gray); letter-spacing: 1px; }
+        
+        /* Исправленные инпуты */
+        .input-group input, .input-group select {
+            background: rgba(255,255,255,0.03) !important; 
+            border: 1px solid var(--border);
+            padding: 12px; 
+            color: white; 
+            font-family: inherit; 
+            transition: 0.3s;
+            appearance: none; /* Убираем стандартную стрелочку select */
+            -webkit-appearance: none;
+        }
+
+        /* Трюк для иконок календаря и времени — делаем их белыми */
+        ::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        /* Исправляем фон выпадающего списка */
+        select option {
+            background: #111;
+            color: white;
+        }
+
+        .input-group input:focus, .input-group select:focus { 
+            border-color: var(--accent); 
+            outline: none; 
+            background: rgba(255,255,255,0.07) !important;
+        }
+        
+        .booking-form.anim-reveal-up { animation-delay: 0s !important; }
+
+        /* Кастомная стрелочка для select, так как мы скрыли стандартную */
+        .select-wrapper { position: relative; display: flex; flex-direction: column; }
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 10px;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            color: var(--gray);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Ц<span>Е</span>Х</a>
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="residents.html" class="nav-link">Резиденты</a>
+                <a href="delivery.html" class="nav-link">Доставка</a>
+                <a href="events.html" class="nav-link">Афиша</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="booking-section">
+            <div class="booking-form anim-reveal-up">
+                <h1>Резерв стола</h1>
+                <form id="res-form">
+                    <div class="input-group" style="margin-bottom: 20px;">
+                        <label>Ваше имя</label>
+                        <input type="text" placeholder="Александр" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Дата</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Время</label>
+                            <input type="time" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group select-wrapper">
+                            <label>Гости</label>
+                            <select>
+                                <option>1 персона</option>
+                                <option selected>2 персоны</option>
+                                <option>4 персоны</option>
+                                <option>6+ персон</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Телефон</label>
+                            <input type="tel" placeholder="+380" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-main" style="width: 100%; margin-top: 20px; border:none; cursor:pointer;">Забронировать</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('res-form').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Заявка принята! Мы перезвоним для подтверждения.');
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+</html>

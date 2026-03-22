@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доставка | ЦЕХ</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .delivery-layout { display: flex; padding-top: 150px; gap: 50px; margin-bottom: 100px; }
+        
+        /* Категории */
+        .categories-sidebar { width: 250px; position: sticky; top: 150px; height: fit-content; }
+        .category-item { 
+            display: block; padding: 15px 0; color: var(--gray); 
+            text-decoration: none; font-size: 13px; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border);
+            transition: 0.3s; cursor: pointer;
+        }
+        .category-item.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+        /* Сетка */
+        .menu-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+
+        /* Специальный класс для динамических элементов, чтобы они не ждали очереди */
+        .menu-grid .food-card.anim-reveal-up {
+            animation-delay: 0s !important; /* Убираем задержку */
+            animation-duration: 0.4s; /* Делаем появление чуть быстрее */
+        }
+        
+        .food-card { 
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border); 
+            transition: 0.4s var(--transition-func); position: relative;
+        }
+        .food-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        
+        .food-img { width: 100%; height: 220px; object-fit: cover; filter: grayscale(1); transition: 0.5s; }
+        .food-card:hover .food-img { filter: grayscale(0); }
+
+        .food-info { padding: 25px; }
+        .food-info h4 { font-size: 18px; text-transform: uppercase; margin-bottom: 8px; }
+        .food-info p { font-size: 12px; color: var(--gray); margin-bottom: 20px; height: 32px; overflow: hidden; }
+        
+        .food-price-row { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-weight: 900; font-size: 20px; color: var(--white); }
+
+        .add-btn {
+            background: var(--accent); border: none; color: white;
+            width: 40px; height: 40px; cursor: pointer; font-weight: 700;
+            transition: 0.3s;
+        }
+        .add-btn:hover { background: var(--white); color: var(--dark); }
+
+        /* Плашка корзины */
+        .cart-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--accent); color: white; padding: 20px 0;
+            transform: translateY(100%); transition: 0.5s var(--transition-func);
+            z-index: 2000; cursor: pointer;
+        }
+        .cart-bar.active { transform: translateY(0); }
+        .cart-content { display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Ц<span>Е</span>Х</a>
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="residents.html" class="nav-link">Резиденты</a>
+                <a href="delivery.html" class="nav-link active">Доставка</a>
+                <a href="events.html" class="nav-link">Афиша</a>
+            </nav>
+            <div class="header-actions">
+                <a href="booking.html" class="btn-filled">Забронировать</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="delivery-layout">
+            <aside class="categories-sidebar">
+                <div class="category-item active" data-cat="all">Все блюда</div>
+                <div class="category-item" data-cat="burgers">Бургеры</div>
+                <div class="category-item" data-cat="sushi">Суши</div>
+                <div class="category-item" data-cat="drinks">Напитки</div>
+            </aside>
+
+            <main class="menu-grid" id="menu-container">
+                </main>
+        </div>
+    </div>
+
+    <div class="cart-bar" id="cart-bar">
+        <div class="container cart-content">
+            <span id="cart-info">В КОРЗИНЕ 0 ТОВАРОВ</span>
+            <span style="font-weight: 900;">ОФОРМИТЬ ЗАКАЗ — <span id="cart-total">0</span> ₴</span>
+        </div>
+    </div>
+
+    <script src="delivery.js"></script>
+</body>
+</html>

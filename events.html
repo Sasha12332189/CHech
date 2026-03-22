@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Афиша | ЦЕХ</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .events-container {
+            padding: 150px 0 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            letter-spacing: -2px;
+        }
+
+        .event-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 200px;
+            align-items: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s var(--transition-func);
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .event-row:hover {
+            padding-left: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom-color: var(--accent);
+        }
+
+        .event-date {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .event-date span {
+            display: block;
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .event-info h3 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .event-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .event-status {
+            text-align: right;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status-online { color: #00ff88; }
+        .status-sold { color: var(--gray); opacity: 0.5; }
+
+        /* Убираем задержку анимации для списка, чтобы не бесило */
+        .event-row.anim-reveal-up {
+            animation-delay: calc(var(--i) * 0.1s) !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Ц<span>Е</span>Х</a>
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="residents.html" class="nav-link">Резиденты</a>
+                <a href="delivery.html" class="nav-link">Доставка</a>
+                <a href="events.html" class="nav-link active">Афиша</a>
+            </nav>
+            <div class="header-actions">
+                <a href="booking.html" class="btn-filled">Забронировать</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="events-container">
+            <h1 class="section-title anim-reveal-up">Ближайшие<br>события</h1>
+
+            <div class="events-list">
+                <a href="#" class="event-row anim-reveal-up" style="--i: 1">
+                    <div class="event-date">24 <span>Марта</span></div>
+                    <div class="event-info">
+                        <h3>Techno Industrial Night</h3>
+                        <p>Main Stage / 22:00 / 18+</p>
+                    </div>
+                    <div class="event-status status-online">Билеты от 1500 ₽</div>
+                </a>
+
+                <a href="#" class="event-row anim-reveal-up" style="--i: 2">
+                    <div class="event-date">28 <span>Марта</span></div>
+                    <div class="event-info">
+                        <h3>Jazz & Wine Evening</h3>
+                        <p>Lounge Zone / 19:00</p>
+                    </div>
+                    <div class="event-status status-online">Билеты от 800 ₽</div>
+                </a>
+
+                <a href="#" class="event-row anim-reveal-up" style="--i: 3">
+                    <div class="event-date">02 <span>Апреля</span></div>
+                    <div class="event-info">
+                        <h3>Vinyl Market & DJ Set</h3>
+                        <p>Market Area / 14:00</p>
+                    </div>
+                    <div class="event-status status-sold">SOLD OUT</div>
+                </a>
+
+                <a href="#" class="event-row anim-reveal-up" style="--i: 4">
+                    <div class="event-date">05 <span>Апреля</span></div>
+                    <div class="event-info">
+                        <h3>Chef's Table: Meat Culture</h3>
+                        <p>Private Room / 20:00</p>
+                    </div>
+                    <div class="event-status status-online">6 мест осталось</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
